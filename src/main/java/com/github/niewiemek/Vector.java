@@ -1,6 +1,6 @@
 package com.github.niewiemek;
 
-public class Vector {
+public class Vector implements Transform<Vector> {
 
   private final double dx, dy;
 
@@ -20,5 +20,11 @@ public class Vector {
 
   public double getDy() {
     return dy;
+  }
+
+  @Override
+  public Vector transform(Vector vector) {
+    Point transformedDxy = new Point(dx, dy).transform(vector);
+    return new Vector(transformedDxy.getX(), transformedDxy.getY());
   }
 }
